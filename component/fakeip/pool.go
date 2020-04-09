@@ -144,7 +144,7 @@ func New(options Options) (*Pool, error) {
 	min := ipToUint(options.IPNet.IP) + 2
 
 	ones, bits := options.IPNet.Mask.Size()
-	total := 1<<uint(bits-ones) - 2
+	total := 1<<uint(bits-ones) - 3 /* network 0, gateway 1, broadcast 255 */
 
 	if total <= 0 {
 		return nil, errors.New("ipnet don't have valid ip")
